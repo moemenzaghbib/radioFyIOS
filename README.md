@@ -1,34 +1,58 @@
+# RadioFY IOS Version
 
-Sure, here's a sample README file for your RadioFY IOS Version app:
+RadioFY IOS is a tunsian's radios based app that gives you the access to listen to tunsian radios see their web posts and interact withthem ( like and comment the posts ) and you can access your favorite ( liked posts ) from the app & this app contian a music plauyer which can play music from a host
 
-RadioFY IOS Version
-RadioFY logo
 
-RadioFY IOS Version is a cool and modern music streaming app that allows you to listen to your favorite radio stations from around the world. With RadioFY, you can discover new music, create playlists, and share your favorite songs with your friends.
 
-Features
-Access to thousands of radio stations from around the world
-A modern and intuitive user interface
-Create and customize playlists of your favorite songs
-Share your favorite songs with your friends on social media
-Access to a variety of genres, including pop, rock, hip hop, jazz, and more
-Requirements
-iOS 13.0 or later
-Xcode 12 or later
-Installation
-Clone or download the RadioFY IOS Version repository from GitHub
-Open the project in Xcode
-Build and run the app on your iOS device or simulator
-Configuration
-To use RadioFY IOS Version, you'll need to obtain an API key from Example Radio API. Once you have an API key, open the Constants.swift file and replace the API_KEY value with your own key.
 
-Support
-If you have any issues or questions about RadioFY IOS Version, please feel free to contact us at moemen.zaghbib@esprit.tn.
 
-License
-RadioFY IOS Version is released under the MIT License. See LICENSE for details.
+![Logo](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/RadioFyLogo.png)
 
-Contributing
-If you'd like to contribute to RadioFY IOS Version, please fork the repository and create a pull request. We welcome contributions of all kinds, including bug fixes, new features, and documentation updates.
 
-Thanks for using RadioFY IOS Version! We hope you enjoy the app.
+## Authors
+
+- [@moemenzaghbib](https://github.com/moemenzaghbib)
+
+## Color Reference
+| Example Color | Hex Code |
+|---------------|----------|
+| Orange 1       | ![#CC5500](https://via.placeholder.com/10/CC5500?text=+) #CC5500 |
+| Orange 2      | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Orange 3       | ![#FFA500](https://via.placeholder.com/10/FFA500?text=+) #FFA500 |
+| Orange 4      | ![#FFB266](https://via.placeholder.com/10/FFB266?text=+) #FFB266 |
+| Light Grey    | ![#e6e6e6](https://via.placeholder.com/10/e6e6e6?text=+) #e6e6e6 |
+| White         | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
+| Dark Black    | ![#1a1a1a](https://via.placeholder.com/10/1a1a1a?text=+) #1a1a1a |
+| Black         | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/moemen-zaghbib-520a9323a/)
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+
+## Documentation
+
+[Documentation](https://linktodocumentation)
+
+
+## Features
+
+- Access to thousands of Tunisian's radio stations 
+- A modern and intuitive user interface
+- play your saved & hosted favorite songs
+- Access to Tunsians's radios web posts and interact withem within the app ( like and comment)
+- Access to your favorite posts
+
+
+
+## 🚀 About Me
+I'm ZAGHBIB Moemen a young Tunisian Developer i currently work at Mediseo DEV france, and study in ESPRIT Tunsia, I master web codding ( back & front but mostly back ), I master php, symfony, java, java spring, c# .net, nodejs, reactjs, ejs, kotlin ( android ), SWIFT ( IOS ), flutter ( CROSSPLATFORM ), codeNameOne, blockchain and the metadata, nfts and many other stuff...
+
+Feel free me to approach me if you need anything: 
+moemen.zaghbib@esprit.tn
+devoleper.mediseo@gmail.com
+
