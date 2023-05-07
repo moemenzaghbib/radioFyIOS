@@ -1,90 +1,284 @@
+//
+//import SwiftUI
+//import AVFoundation
+//
+//class Song: Identifiable, Equatable {
+//    let id = UUID()
+//    let name: String
+//    let url: URL
+//
+//    init(name: String, url: URL) {
+//        self.name = name
+//        self.url = url
+//    }
+//
+//    static func == (lhs: Song, rhs: Song) -> Bool {
+//        lhs.id == rhs.id
+//    }
+//}
+//class MusicPlayer: ObservableObject {
+//    var player: AVPlayer?
+//        var currentItem: AVPlayerItem?
+//        @Published var isPlaying: Bool = false
+//        @Published var currentSong: Song?
+//        @Published var currentIndex: Int = 0
+//        var songs: [Song] = []
+//
+//    func playSong(_ song: Song) {
+//        guard let index = songs.firstIndex(of: song) else { return }
+//        currentIndex = index
+//        currentSong = song
+//        currentItem = AVPlayerItem(url: song.url)
+//        player = AVPlayer(playerItem: currentItem)
+//        player?.play()
+//        isPlaying = true
+//    }
+//
+//    func pauseSong() {
+//        player?.pause()
+//        isPlaying = false
+//    }
+//
+//    func togglePlayPause() {
+//        if isPlaying {
+//            pauseSong()
+//        } else if let song = currentSong {
+//            playSong(song)
+//        }
+//    }
+//
+//    func playNextSong() {
+//        guard !songs.isEmpty else { return }
+//        currentIndex = (currentIndex + 1) % songs.count
+//        let nextSong = songs[currentIndex]
+//        playSong(nextSong)
+//    }
+//
+//    func playPreviousSong() {
+//        guard !songs.isEmpty else { return }
+//        currentIndex = (currentIndex - 1 + songs.count) % songs.count
+//        let previousSong = songs[currentIndex]
+//        playSong(previousSong)
+//    }
+//}
+//
+//struct MusicPlayerView: View {
+//    @StateObject var musicPlayer = MusicPlayer()
+//    @State var isImporting: Bool = false
+//    @State var songs: [Song] = []
+//
+//    var body: some View {
+//        VStack {
+//            if !musicPlayer.isPlaying {
+//                Button(action: {
+//                    isImporting = true
+//                }, label: {
+//                    Text("Import Songs")
+//                })
+//                .padding()
+//            }
+//
+//            List(songs) { song in
+//                Button(action: {
+//                    musicPlayer.playSong(song)
+//                }, label: {
+//                    Text(song.name)
+//                })
+//            }
+//
+//            HStack {
+//                Button(action: {
+//                    musicPlayer.pauseSong()
+//                }, label: {
+//                    Image(systemName: "pause.fill")
+//                        .font(.system(size: 30))
+//                })
+//                .padding()
+//
+//                Button(action: {
+//                    musicPlayer.togglePlayPause()
+//                }, label: {
+//                    Image(systemName: musicPlayer.isPlaying ? "pause.fill" : "play.fill")
+//                        .font(.system(size: 30))
+//                })
+//                .padding()
+//
+//                Button(action: {
+//                    musicPlayer.playNextSong()
+//                }, label: {
+//                    Image(systemName: "forward.fill")
+//                        .font(.system(size: 30))
+//                })
+//                .padding()
+//            }
+//        }
+//        .sheet(isPresented: $isImporting) {
+//            DocumentPicker(supportedTypes: ["public.audio"], onUrlsPicked: { urls in
+//                songs.append(contentsOf: urls.map({ Song(name: $0.lastPathComponent, url: $0) }))
+//                isImporting = false
+//            })
+//        }
+//        .onAppear {
+//            AVPlayer.setupObservers()
+//        }
+//    }
+//}
+//struct DocumentPicker: UIViewControllerRepresentable {
+//    typealias UIViewControllerType = UIDocumentPickerViewController
+//
+//    let supportedTypes: [String]
+//    let onUrlsPicked: ([URL]) -> Void
+//
+//    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+//        let documentPicker = UIDocumentPickerViewController(documentTypes: supportedTypes, in: .import)
+//        documentPicker.allowsMultipleSelection = true
+//        documentPicker.delegate = context.coordinator
+//        return documentPicker
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+//
+//    func makeCoordinator() -> Coordinator {
+//        Coordinator(self)
+//    }
+//
+//    class Coordinator: NSObject, UIDocumentPickerDelegate {
+//        let parent: DocumentPicker
+//
+//        init(_ parent: DocumentPicker) {
+//            self.parent = parent
+//        }
+//
+//        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+//            parent.onUrlsPicked(urls)
+//        }
+//    }
+//}
+//
+//extension AVPlayer {
+//    static func setupObservers() {
+//        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+//        try? AVAudioSession.sharedInstance().setActive(true)
+//    }
+//}
 
-
-
-import AVFoundation
 import SwiftUI
-struct SongRow: View {
-    let song: Song
+import AVFoundation
 
-    var body: some View {
-        HStack {
-            Text(song.title)
-            Spacer()
-            Text(song.artist)
-        }
-    }
+struct Song: Identifiable {
+    let id = UUID()
+    let name: String
+    let url: URL
 }
 
-struct SongListView: View {
-    let songs: [Song]
-    @Binding var selectedSong: Song?
+class MusicPlayer: ObservableObject {
+    var player: AVPlayer?
+    var currentItem: AVPlayerItem?
+    @Published var isPlaying: Bool = false
+    @Published var currentSong: Song?
 
-    var body: some View {
-        List(songs) { song in
-            Button(action: {
-                selectedSong = song
-            }) {
-                SongRow(song: song)
-            }
-        }
+    func playSong(_ song: Song) {
+        currentSong = song
+        currentItem = AVPlayerItem(url: song.url)
+        player = AVPlayer(playerItem: currentItem)
+        player?.play()
+        isPlaying = true
     }
-}
 
-struct PlayerView1: View {
-    @Binding var selectedSong: Song?
+    func pauseSong() {
+        player?.pause()
+        isPlaying = false
+    }
 
-    var body: some View {
-        VStack(spacing: 20) {
-            if let song = selectedSong {
-                Text(song.title)
-                Text(song.artist)
-                Image(song.albumArt)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else {
-                Text("No song selected")
-            }
+    func togglePlayPause() {
+        if isPlaying {
+            pauseSong()
+        } else if let song = currentSong {
+            playSong(song)
         }
     }
 }
 
 struct MusicPlayerView: View {
-    let songs = [
-        Song(title: "Song 1", artist: "Artist 1", albumArt: "album-art-1"),
-        Song(title: "Song 2", artist: "Artist 2", albumArt: "album-art-2"),
-        Song(title: "Song 3", artist: "Artist 3", albumArt: "album-art-3")
-    ]
-    @State var selectedSong: Song?
+    @StateObject var musicPlayer = MusicPlayer()
+    @State var isImporting: Bool = false
+    @State var songs: [Song] = []
 
     var body: some View {
-        NavigationView {
-            TabView {
-                SongListView(songs: songs, selectedSong: $selectedSong)
-                    .tabItem {
-                        Image(systemName: "music.note.list")
-                        Text("Songs")
-                    }
-                Text("Playlists")
-                    .tabItem {
-                        Image(systemName: "list.bullet")
-                        Text("Playlists")
-                    }
-                Text("Search")
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                        Text("Search")
-                    }
+        VStack {
+            if !musicPlayer.isPlaying {
+                Button(action: {
+                    isImporting = true
+                }, label: {
+                    Text("Import Songs")
+                })
+                .padding()
             }
-            .navigationTitle("My Music Player")
-            .navigationBarTitleDisplayMode(.inline)
-            PlayerView(selectedSong: $selectedSong)
-                .frame(height: 100)
+
+            List(songs) { song in
+                Button(action: {
+                    musicPlayer.playSong(song)
+                }, label: {
+                    Text(song.name)
+                })
+            }
+
+            if musicPlayer.isPlaying {
+                Button(action: {
+                    musicPlayer.pauseSong()
+                }, label: {
+                    Text("Pause")
+                })
+                .padding()
+            }
+        }
+        .sheet(isPresented: $isImporting) {
+            DocumentPicker(supportedTypes: ["public.audio"], onUrlsPicked: { urls in
+                songs.append(contentsOf: urls.map({ Song(name: $0.lastPathComponent, url: $0) }))
+                isImporting = false
+            })
+        }
+        .onAppear {
+            AVPlayer.setupObservers()
         }
     }
 }
 
-struct MusicPlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        MusicPlayerView()
+struct DocumentPicker: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIDocumentPickerViewController
+
+    let supportedTypes: [String]
+    let onUrlsPicked: ([URL]) -> Void
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: supportedTypes, in: .import)
+        documentPicker.allowsMultipleSelection = true
+        documentPicker.delegate = context.coordinator
+        return documentPicker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let parent: DocumentPicker
+
+        init(_ parent: DocumentPicker) {
+            self.parent = parent
+        }
+
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            parent.onUrlsPicked(urls)
+        }
+    }
+}
+
+extension AVPlayer {
+    static func setupObservers() {
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setActive(true)
     }
 }

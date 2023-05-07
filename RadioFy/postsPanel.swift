@@ -142,7 +142,7 @@ struct POSTSPANEL: View {
                     }
                     .tag(1)
                 
-                HomeView()
+                MusicPlayerView()
                                                .navigationTitle("Media List")
                                                .environmentObject(player)                    .tabItem {
                         Label("Music", systemImage: "music.note")
