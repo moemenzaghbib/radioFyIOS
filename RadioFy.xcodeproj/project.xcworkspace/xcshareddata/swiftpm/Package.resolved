@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS.git",
+      "state" : {
+        "revision" : "0eadcdec4ddb121865f3d66917549194afce1f2b",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "googlesignin-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleSignIn-iOS",
+      "state" : {
+        "revision" : "7932d33686c1dc4d7df7a919aae47361d1cdfda4",
+        "version" : "7.0.0"
+      }
+    },
+    {
+      "identity" : "gtm-session-fetcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/gtm-session-fetcher.git",
+      "state" : {
+        "revision" : "96d7cc73a71ce950723aa3c50ce4fb275ae180b8",
+        "version" : "3.1.0"
+      }
+    },
+    {
+      "identity" : "gtmappauth",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GTMAppAuth.git",
+      "state" : {
+        "revision" : "cee3c709307912d040bd1e06ca919875a92339c6",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "af4be924ad984cf4d16f4ae4df424e79a443d435",
+        "version" : "7.6.2"
+      }
+    },
+    {
+      "identity" : "swiftsoup",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/scinfu/SwiftSoup.git",
+      "state" : {
+        "revision" : "f707b8680cddb96dc1855632340a572ef37bbb98",
+        "version" : "2.5.3"
+      }
+    }
+  ],
+  "version" : 2
+}
