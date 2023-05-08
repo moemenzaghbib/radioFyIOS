@@ -39,6 +39,8 @@ RadioFY IOS is a tunsian's radios based app that gives you the access to listen 
 <!--![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.52.png)-->
 <!--![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.55.png)-->
 <!--![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.57.png)-->
+<div style="display: flex; flex-wrap: wrap;">
+
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-07%20at%2012.26.04.png" width="200" height="400">
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-07%20at%2012.26.16.png" width="200" height="400">
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.23.png" width="200" height="400">
@@ -47,7 +49,7 @@ RadioFY IOS is a tunsian's radios based app that gives you the access to listen 
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.52.png" width="200" height="400">
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.55.png" width="200" height="400">
 <img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.57.png" width="200" height="400">
-
+</div>
 
 
 ## Documentation
