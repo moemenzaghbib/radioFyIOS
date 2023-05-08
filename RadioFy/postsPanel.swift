@@ -57,7 +57,7 @@ struct PostCard: View {
                     .foregroundColor(.white)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 20)
-                    .background(Color.blue)
+                    .background(Color.orange)
                     .cornerRadius(5)
             }
             
@@ -137,14 +137,17 @@ struct POSTSPANEL: View {
                     .tag(0)
                 
                 radioScene()
+                
                     .tabItem {
                         Label("Radio", systemImage: "dot.radiowaves.left.and.right")
                     }
                     .tag(1)
                 
                 MusicPlayerView()
-                                               .navigationTitle("Media List")
-                                               .environmentObject(player)                    .tabItem {
+                    .navigationTitle("Media List")
+                    .environmentObject(player)
+                
+                    .tabItem {
                         Label("Music", systemImage: "music.note")
                     }
                     .tag(2)
@@ -169,6 +172,7 @@ struct POSTSPANEL: View {
                  
                 }
             }
+            .accentColor(.orange) // sets the accent color to orange
         }
     }
 }

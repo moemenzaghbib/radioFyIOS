@@ -32,7 +32,7 @@ struct ItemCardView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title ?? "title default")
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.top, 20)
             
             KFImage(URL(string: image ?? "test url"))
@@ -116,7 +116,7 @@ struct ItemCardView: View {
 
             Text(description ?? "default description")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach(comments) { comment in
@@ -179,11 +179,15 @@ struct ItemCardView: View {
                 
                 Text("Add a comment")
                        .font(.headline)
-                       .foregroundColor(.white)
-                   HStack {
+                       .foregroundColor(.black)
+                HStack {
                        TextEditor(text: $newComment)
                            .frame(height: 40)
-                           .background(Color.gray.opacity(0.2))
+                           .overlay(
+                                   RoundedRectangle(cornerRadius: 10)
+                                       .stroke(Color.orange, lineWidth: 2)
+                               )
+                           .background(Color.gray.opacity(0.9))
                            .clipShape(RoundedRectangle(cornerRadius: 10))
                            .padding(.leading, 10)
                        Button(action: {
@@ -225,7 +229,7 @@ struct ItemCardView: View {
                                Image(systemName: "paperplane.fill")
                                    .resizable()
                                    .scaledToFit()
-                                   .foregroundColor(Color.orange)
+                                   .foregroundColor(.black)
                                    .frame(width: 20, height: 20)
                                    .padding(.trailing, 10)
                            }
@@ -241,9 +245,10 @@ struct ItemCardView: View {
             
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+
                 Text(date ?? "default date")
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .font(.footnote)
                 
                 Spacer()
@@ -255,13 +260,13 @@ struct ItemCardView: View {
                     }                }) {
                     Text("View post on web")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
             }
             Spacer()
             
         }
-        .background(LinearGradient(gradient: Gradient(colors: [.orange, .yellow]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//        .background(LinearGradient(gradient: Gradient(colors: [.orange, .yellow]), startPoint: .topLeading, endPoint: .bottomTrailing))
         .onAppear {
             let session1 = URLSession(configuration: .default)
                       let session2 = URLSession(configuration: .default)
