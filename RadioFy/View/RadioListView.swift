@@ -9,31 +9,58 @@ import Foundation
 import SwiftUI
 import Kingfisher
 import AVKit
-
+//
+//struct RadioListView: View {
+//    @ObservedObject var fetcher = RadioFetcher()
+//    @StateObject var radioPlayer = RadioPlayer.instance
+//
+//    var body: some View {
+//        List(fetcher.radios) { radio in
+//            HStack (alignment: .center,
+//                    spacing: 10) {
+//                KFImage(URL(string: radio.imageUrl))
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 50, height: 50)
+//                Text(radio.name)
+//            }.onTapGesture {
+//                do {
+//                    radioPlayer.initPlayer(url: radio.streamUrl)
+//                    radioPlayer.play(radio)
+//                } catch {
+//                    print("AVAudioPlayer init failed")
+//                }
+//            }
+//        }
+//    }
+//
+//}
 struct RadioListView: View {
     @ObservedObject var fetcher = RadioFetcher()
     @StateObject var radioPlayer = RadioPlayer.instance
     
     var body: some View {
-        List(fetcher.radios) { radio in
-            HStack (alignment: .center,
-                    spacing: 10) {
-                KFImage(URL(string: radio.imageUrl))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                Text(radio.name)
-            }.onTapGesture {
-                do {
-                    radioPlayer.initPlayer(url: radio.streamUrl)
-                    radioPlayer.play(radio)
-                } catch {
-                    print("AVAudioPlayer init failed")
+        VStack {
+            List(fetcher.radios) { radio in
+                HStack (alignment: .center,
+                        spacing: 10) {
+                    KFImage(URL(string: radio.imageUrl))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50)
+                    Text(radio.name)
+                }.onTapGesture {
+                    do {
+                        radioPlayer.initPlayer(url: radio.streamUrl)
+                        radioPlayer.play(radio)
+                    } catch {
+                        print("AVAudioPlayer init failed")
+                    }
                 }
             }
+            .frame(height: 500) // Set a fixed height for the list
         }
     }
-    
 }
 
 public class RadioFetcher: ObservableObject {

@@ -8,17 +8,25 @@
 import Foundation
 import SwiftUI
 
-struct radioScene: View {
     
-    var body: some View {
-        NavigationView {
-            ZStack {
-                RadioListView()
-                InfoPanelView()
-            }.navigationBarTitle("Radio Player")
+    struct radioScene: View {
+        var body: some View {
+            NavigationView {
+                ZStack {
+                    // Fix the size and position of RadioListView
+                    RadioListView()
+                        .frame(height: 200)
+                        .position(x: 200, y: 250)
+                    // Add InfoPanelView on top of it
+                    InfoPanelView()
+                        .zIndex(1)
+                        .padding()
+                }
+            
+            }
         }
     }
-}
+
 
 struct radioScene_Previews: PreviewProvider {
     static var previews: some View {

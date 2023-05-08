@@ -16,19 +16,16 @@ struct SignUpView2: View {
     @State private var email = ""
     @State private var password = ""
     @State private var repeatPassword = ""
-   
+    @State private var isSuccess = false
+
     func test() {
-        print("The text was clicked!",firstName)
+        print("The text was clicked!", firstName)
 
         let url = URL(string: "http://localhost:9090/user/signup")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-       // var userData = ["login": "", "password":"", "Age": ""]
 
-    //    let login = userData["login"]
-    //    let password = userData["password"]
-    //    let Age = userData["Age"]
         let userData: [String: Any] = [
             "firstname": firstName,
             "lastname": lastName,
@@ -37,26 +34,34 @@ struct SignUpView2: View {
             "password": password,
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: userData)
-        
+
         request.httpBody = jsonData
-        
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
                 print("Error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            
+
             if response.statusCode == 200 {
                 print("User signed up successfully")
-//                NavigationLink(destination: SignUpView2(firstName: firstName, lastName: lastName, age: age)) {
+
+                DispatchQueue.main.async {
+                    let popup = UIAlertController(title: "Signup Success", message: "You have successfully signed up!", preferredStyle: .alert)
+                    popup.addAction(UIAlertAction(title: "OK", style: .default))
+                    UIApplication.shared.windows.first?.rootViewController?.present(popup, animated: true)
+                    isSuccess = true
+                }
 
             } else {
                 print("Error: \(response.statusCode)")
             }
         }
-        
+
         task.resume()
     }
+
+
     var body: some View {
         VStack {
            
