@@ -118,30 +118,32 @@ struct ItemCardView: View {
                 .font(.headline)
                 .foregroundColor(.black)
             ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        ForEach(comments) { comment in
-                            HStack(alignment: .top) {
-                                comment.profilePicture
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(comment.user)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(comment.comment)
-                                        .font(.subheadline)
-                                        .foregroundColor(.white)
-                                }
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(comments) { comment in
+                        HStack(alignment: .top) {
+                            comment.profilePicture
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(comment.user)
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                Text(comment.comment)
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
                             }
-                            .padding(10)
-                            .background(Color.gray.opacity(0.2))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .frame(maxWidth: .infinity)
                         }
+                        .padding(10)
+                        .background(Color.gray.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
+            }
+
 //            ScrollView(.vertical) {
 //                VStack(alignment: .leading, spacing: 10) {
 //                    ForEach(comments) { comment in

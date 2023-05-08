@@ -18,6 +18,7 @@ struct SignUpView2: View {
     @State private var repeatPassword = ""
     @State private var isSuccess = false
 
+
     func test() {
         print("The text was clicked!", firstName)
 
@@ -48,9 +49,10 @@ struct SignUpView2: View {
 
                 DispatchQueue.main.async {
                     let popup = UIAlertController(title: "Signup Success", message: "You have successfully signed up!", preferredStyle: .alert)
-                    popup.addAction(UIAlertAction(title: "OK", style: .default))
+                    popup.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                        self.isSuccess = true
+                    })
                     UIApplication.shared.windows.first?.rootViewController?.present(popup, animated: true)
-                    isSuccess = true
                 }
 
             } else {
@@ -60,6 +62,7 @@ struct SignUpView2: View {
 
         task.resume()
     }
+
 
 
     var body: some View {
@@ -128,6 +131,10 @@ struct SignUpView2: View {
                         .foregroundColor(.white)
                         .background(Color.orange)
                         .cornerRadius(8)
+                    
+                    NavigationLink(destination: LoginView(), isActive: $isSuccess) {
+                        EmptyView()
+                    }
                 }
                 Button(action: {
                     // Handle login button tap
