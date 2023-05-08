@@ -31,7 +31,8 @@ RadioFY IOS is a tunsian's radios based app that gives you the access to listen 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/moemen-zaghbib-520a9323a/)
 ## Screenshots
 
-![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-07%20at%2012.26.04.png)
+<img src="https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-07%20at%2012.26.04.png" alt="App Screenshot" width="400" height="800">
+
 ![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-07%20at%2012.26.16.png)
 ![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.23.png)
 ![App Screenshot](https://raw.githubusercontent.com/moemenzaghbib/radioFyIOS/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-05-08%20at%2010.00.34.png)
