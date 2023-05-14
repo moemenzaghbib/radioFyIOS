@@ -1,20 +1,13 @@
-//
-//  RadioFyApp.swift
-//  RadioFy
-//
-//  Created by imen ben fredj on 9/3/2023.
-//
-
 import SwiftUI
 
 @main
 struct RadioFyApp: App {
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-            LoginView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            let socketURL = URL(string: "ws://127.0.0.1:3000")!
+            let webSocketManager = WebSocketManager(socketURL: socketURL)
+            let chatView = ChatView(webSocketManager: webSocketManager, roomName: "Room1", userName: "User1")
+            chatView
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750805422A111B66005376BB /* WebSocketManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750805412A111B66005376BB /* WebSocketManagerWrapper.swift */; };
 		750A436D29BA82D800FE2A47 /* RadioFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436C29BA82D800FE2A47 /* RadioFyApp.swift */; };
 		750A436F29BA82D800FE2A47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436E29BA82D800FE2A47 /* ContentView.swift */; };
 		750A437129BA82D900FE2A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750A437029BA82D900FE2A47 /* Assets.xcassets */; };
@@ -42,6 +43,11 @@
 		75771B4F2A0666FC00C58DA7 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771B4E2A0666FC00C58DA7 /* PlayerViewModel.swift */; };
 		75771B512A06671F00C58DA7 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771B502A06671F00C58DA7 /* SongViewModel.swift */; };
 		75771BD82A085B3400C58DA7 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771BD72A085B3400C58DA7 /* PersistenceManager.swift */; };
+		75771BDA2A110B8100C58DA7 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771BD92A110B8100C58DA7 /* WebSocketManager.swift */; };
+		75771BDD2A110C7900C58DA7 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 75771BDC2A110C7900C58DA7 /* Starscream */; };
+		75771BDF2A110CA700C58DA7 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771BDE2A110CA700C58DA7 /* ChatViewModel.swift */; };
+		75771BE12A110CBD00C58DA7 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75771BE02A110CBD00C58DA7 /* ChatView.swift */; };
+		75771BE42A11128500C58DA7 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 75771BE32A11128500C58DA7 /* SocketIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		750805412A111B66005376BB /* WebSocketManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManagerWrapper.swift; sourceTree = "<group>"; };
 		750A436929BA82D800FE2A47 /* RadioFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		750A436C29BA82D800FE2A47 /* RadioFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioFyApp.swift; sourceTree = "<group>"; };
 		750A436E29BA82D800FE2A47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +104,9 @@
 		75771B502A06671F00C58DA7 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
 		75771B532A06676C00C58DA7 /* Song.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Song.geojson; sourceTree = "<group>"; };
 		75771BD72A085B3400C58DA7 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		75771BD92A110B8100C58DA7 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		75771BDE2A110CA700C58DA7 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		75771BE02A110CBD00C58DA7 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +117,9 @@
 				75771B2D29EB562800C58DA7 /* Kingfisher in Frameworks */,
 				75771B2829E7674100C58DA7 /* SwiftSoup in Frameworks */,
 				75771B3029EB841300C58DA7 /* GoogleSignIn in Frameworks */,
+				75771BDD2A110C7900C58DA7 /* Starscream in Frameworks */,
 				75771B3229EB841300C58DA7 /* GoogleSignInSwift in Frameworks */,
+				75771BE42A11128500C58DA7 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +171,7 @@
 				75771B3929FAAEE800C58DA7 /* song.mp3 */,
 				750A436C29BA82D800FE2A47 /* RadioFyApp.swift */,
 				750A436E29BA82D800FE2A47 /* ContentView.swift */,
+				75771BD92A110B8100C58DA7 /* WebSocketManager.swift */,
 				75771B2029DE4A6500C58DA7 /* editProfilePanel.swift */,
 				750A437029BA82D900FE2A47 /* Assets.xcassets */,
 				750A437529BA82D900FE2A47 /* Persistence.swift */,
@@ -221,6 +234,7 @@
 				75771B432A05367900C58DA7 /* NowPlayingView.swift */,
 				75771B452A05369600C58DA7 /* RadioListView.swift */,
 				75771B472A0536B300C58DA7 /* InfoPanelView.swift */,
+				75771BE02A110CBD00C58DA7 /* ChatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +244,7 @@
 			children = (
 				75771B4E2A0666FC00C58DA7 /* PlayerViewModel.swift */,
 				75771B502A06671F00C58DA7 /* SongViewModel.swift */,
+				75771BDE2A110CA700C58DA7 /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -238,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				75771B532A06676C00C58DA7 /* Song.geojson */,
+				750805412A111B66005376BB /* WebSocketManagerWrapper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -270,6 +286,8 @@
 				75771B2C29EB562800C58DA7 /* Kingfisher */,
 				75771B2F29EB841300C58DA7 /* GoogleSignIn */,
 				75771B3129EB841300C58DA7 /* GoogleSignInSwift */,
+				75771BDC2A110C7900C58DA7 /* Starscream */,
+				75771BE32A11128500C58DA7 /* SocketIO */,
 			);
 			productName = RadioFy;
 			productReference = 750A436929BA82D800FE2A47 /* RadioFy.app */;
@@ -347,6 +365,8 @@
 				75771B2629E7674100C58DA7 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				75771B2B29EB562800C58DA7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				75771B2E29EB841300C58DA7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				75771BDB2A110C7900C58DA7 /* XCRemoteSwiftPackageReference "Starscream" */,
+				75771BE22A11128500C58DA7 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 750A436A29BA82D800FE2A47 /* Products */;
 			projectDirPath = "";
@@ -395,11 +415,15 @@
 				75771B462A05369600C58DA7 /* RadioListView.swift in Sources */,
 				750A43A029C2F87600FE2A47 /* profilePanel.swift in Sources */,
 				750A437629BA82D900FE2A47 /* Persistence.swift in Sources */,
+				75771BE12A110CBD00C58DA7 /* ChatView.swift in Sources */,
 				750A439C29BA8CDC00FE2A47 /* loginPanel.swift in Sources */,
 				75771B512A06671F00C58DA7 /* SongViewModel.swift in Sources */,
 				75771B3629FAA7AE00C58DA7 /* musicPlayer.swift in Sources */,
+				750805422A111B66005376BB /* WebSocketManagerWrapper.swift in Sources */,
+				75771BDF2A110CA700C58DA7 /* ChatViewModel.swift in Sources */,
 				750A439E29C12AB000FE2A47 /* singupPanel1.swift in Sources */,
 				75771B2A29E7714900C58DA7 /* EventScraper.swift in Sources */,
+				75771BDA2A110B8100C58DA7 /* WebSocketManager.swift in Sources */,
 				75771B2129DE4A6500C58DA7 /* editProfilePanel.swift in Sources */,
 				750A43A229C2FC3700FE2A47 /* postsPanel.swift in Sources */,
 				75771B4F2A0666FC00C58DA7 /* PlayerViewModel.swift in Sources */,
@@ -760,6 +784,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		75771BDB2A110C7900C58DA7 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		75771BE22A11128500C58DA7 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -782,6 +822,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75771B2E29EB841300C58DA7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		75771BDC2A110C7900C58DA7 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75771BDB2A110C7900C58DA7 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		75771BE32A11128500C58DA7 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75771BE22A11128500C58DA7 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 
