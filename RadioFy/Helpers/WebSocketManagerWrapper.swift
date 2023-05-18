@@ -1,11 +1,11 @@
 //import Foundation
-//import Combine
 //
 //class WebSocketManagerWrapper: ObservableObject {
-//     let webSocketManager: WebSocketManager
+//    let webSocketManager: WebSocketManager
 //
 //    init(socketURL: URL, userName: String) {
-//        webSocketManager = WebSocketManager(socketURL: socketURL, userName: userName)
+//        webSocketManager = WebSocketManager(socketURL: socketURL)
+//        webSocketManager.userName = userName
 //    }
 //
 //    func connect() {
@@ -20,7 +20,7 @@
 //        webSocketManager.subscribe(roomName: roomName, userName: userName)
 //    }
 //
-//    func sendMessage(_ message: String, roomName: String) {
-//        webSocketManager.sendMessage(message, roomName: roomName, userName: webSocketManager.userName)
+//    func sendMessage(_ message: String, roomName: String, userName: String) {
+//        webSocketManager.send(message, roomName: roomName, userName: userName)
 //    }
 //}

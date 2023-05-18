@@ -1,31 +1,40 @@
 import SwiftUI
 
+import SwiftUI
+import SwiftUI
+import Combine
+
 struct ChatView: View {
     @StateObject private var viewModel: ChatViewModel
     @State private var message: String = ""
 
-    init(webSocketManager: WebSocketManager, roomName: String, userName: String) {
+    init(webSocketManager: WebSocketManager, userName: String, roomName: String) {
         _viewModel = StateObject(wrappedValue: ChatViewModel(webSocketManager: webSocketManager, roomName: roomName, userName: userName))
     }
 
     var body: some View {
         VStack {
             List(viewModel.messages) { chatMessage in
-                HStack {
-                    if chatMessage.isCurrentUser {
-                        Spacer()
-                        Text(chatMessage.message)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    } else {
-                        Text(chatMessage.message)
-                            .padding()
-                            .background(Color.gray)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                        Spacer()
+                VStack(alignment: chatMessage.isCurrentUser ? .trailing : .leading) {
+                    Text(chatMessage.userName)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    HStack {
+                        if chatMessage.isCurrentUser {
+                            Spacer()
+                            Text(chatMessage.message)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        } else {
+                            Text(chatMessage.message)
+                                .padding()
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            Spacer()
+                        }
                     }
                 }
             }
@@ -35,14 +44,24 @@ struct ChatView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
                 Button("Send") {
-                    viewModel.sendMessage(message)
-                    message = ""
+                    if !message.isEmpty {
+                        viewModel.sendMessage(message)
+                        message = ""
+                    }
                 }
+
+                .onAppear {
+                    viewModel.subscribe(roomName: "room1", userName: "userName")
+                }
+
             }
             .padding()
         }
         .onAppear {
-            viewModel.subscribe()
+            viewModel.subscribe(roomName: "roomName", userName: "userName")
+        }
+        .alert(item: $viewModel.userJoined) { userJoined in
+            Alert(title: Text("User Joined"), message: Text("\(userJoined.userName) has joined the room."), dismissButton: .default(Text("OK")))
         }
     }
 }
