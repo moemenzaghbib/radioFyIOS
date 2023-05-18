@@ -69,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		750805412A111B66005376BB /* WebSocketManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManagerWrapper.swift; sourceTree = "<group>"; };
+		750805432A16CCD2005376BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		750A436929BA82D800FE2A47 /* RadioFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		750A436C29BA82D800FE2A47 /* RadioFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioFyApp.swift; sourceTree = "<group>"; };
 		750A436E29BA82D800FE2A47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,6 +164,7 @@
 		750A436B29BA82D800FE2A47 /* RadioFy */ = {
 			isa = PBXGroup;
 			children = (
+				750805432A16CCD2005376BB /* Info.plist */,
 				75771B9A2A084F4F00C58DA7 /* mmusicPlayer */,
 				75771B522A06672D00C58DA7 /* Helpers */,
 				75771B4D2A0666E500C58DA7 /* ViewModel */,
@@ -600,6 +602,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RadioFy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RadioFy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -628,6 +631,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RadioFy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RadioFy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -16,14 +16,14 @@ import SwiftUI
                     // Fix the size and position of RadioListView
                     RadioListView()
                         .frame(height: 200)
-                        .position(x: 200, y: 250)
+                        .offset(x: 0, y: 0) // Adjust the offset as needed
                     // Add InfoPanelView on top of it
                     InfoPanelView()
                         .zIndex(1)
                         .padding()
                 }
-            
             }
+
         }
     }
 
