@@ -13,7 +13,7 @@ struct InfoPanelView: View {
         VStack(alignment: .trailing, spacing: 0.0) {
             Spacer()
             ZStack {
-                VisualEffectView()
+//                VisualEffectView()
                 NowPlayingView()
             }.frame(height: 160)
                 .padding(.bottom, 10)

@@ -10,50 +10,23 @@ import SwiftUI
 import Kingfisher
 import AVKit
 //
-//struct RadioListView: View {
-//    @ObservedObject var fetcher = RadioFetcher()
-//    @StateObject var radioPlayer = RadioPlayer.instance
-//
-//    var body: some View {
-//        List(fetcher.radios) { radio in
-//            HStack (alignment: .center,
-//                    spacing: 10) {
-//                KFImage(URL(string: radio.imageUrl))
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 50, height: 50)
-//                Text(radio.name)
-//            }.onTapGesture {
-//                do {
-//                    radioPlayer.initPlayer(url: radio.streamUrl)
-//                    radioPlayer.play(radio)
-//                } catch {
-//                    print("AVAudioPlayer init failed")
-//                }
-//            }
-//        }
-//    }
-//
-//}
-
-
-
 struct RadioListView: View {
     @ObservedObject var fetcher = RadioFetcher()
     @StateObject var radioPlayer = RadioPlayer.instance
     let socketURL = URL(string: "http://127.0.0.1:3000")!
-
+    let savedEmail = UserDefaults.standard.string(forKey: "emailLogin")
     var body: some View {
-        GeometryReader { geometry in
+        NavigationView {
             VStack(spacing: 0) { // Set spacing to 0
-                ChatView(webSocketManager: WebSocketManager(socketURL: socketURL), userName: "YourUserName", roomName: "RoomName")
-                    .frame(height: geometry.size.height * 0.5) // Set height to 50% of the screen height
-            
+                ChatView(webSocketManager: WebSocketManager(socketURL: socketURL), userName: savedEmail!, roomName: "WaitingHALL")
+                    .frame(maxHeight: .infinity) // Allow ChatView to expand vertically
                 RadioList(fetcher: fetcher)
-                    .frame(height: geometry.size.height * 0.5) // Set height to 50% of the screen height
-                
-                }
+            }
+            .padding(.bottom, 10) // Add bottom padding
+            .edgesIgnoringSafeArea(.bottom) // Ignore safe area for bottom padding
+            .navigationBarTitle("Radio List")
         }
+
     }
 }
 
@@ -63,7 +36,7 @@ struct RadioList: View {
     @StateObject var radioPlayer = RadioPlayer.instance
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal, showsIndicators: true) {
             HStack() {
                 ForEach(fetcher.radios) { radio in
                     VStack {
@@ -89,96 +62,12 @@ struct RadioList: View {
                     .frame(width: UIScreen.main.bounds.width) // Set the width of each item to the screen width
                 }
             }
-            .padding()
+//            .padding()
         }
     }
 }
 
-//struct RadioList: View {
-//    @ObservedObject var fetcher: RadioFetcher
-//    @StateObject var radioPlayer = RadioPlayer.instance
-//
-//    var body: some View {
-//        List(fetcher.radios) { radio in
-//            HStack(alignment: .center, spacing: 10) {
-//                KFImage(URL(string: radio.imageUrl))
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 50, height: 50)
-//                    .cornerRadius(8) // Add corner radius to make it a small block shape
-//                Text(radio.name)
-//            }
-//            .frame(maxWidth: .infinity) // Expand the HStack to full width
-//            .padding(.vertical, 8) // Add vertical padding for spacing
-//            .background(Color.gray.opacity(0.2)) // Add a background color
-//            .cornerRadius(8) // Add corner radius to the entire item
-//            .onTapGesture {
-//                do {
-//                    radioPlayer.initPlayer(url: radio.streamUrl)
-//                    radioPlayer.play(radio)
-//                } catch {
-//                    print("AVAudioPlayer init failed")
-//                }
-//            }
-//        }
-//    }
-//}
 
-//struct RadioList: View {
-//    @ObservedObject var fetcher: RadioFetcher
-//    @StateObject var radioPlayer = RadioPlayer.instance
-//
-//    var body: some View {
-//        List(fetcher.radios) { radio in
-//            HStack(alignment: .center, spacing: 10) {
-//                KFImage(URL(string: radio.imageUrl))
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 50, height: 50)
-//                Text(radio.name)
-//            }
-//            .onTapGesture {
-//                do {
-//                    radioPlayer.initPlayer(url: radio.streamUrl)
-//                    radioPlayer.play(radio)
-//                } catch {
-//                    print("AVAudioPlayer init failed")
-//                }
-//            }
-//        }
-//    }
-//}
-
-
-
-
-//struct RadioListView: View {
-//    @ObservedObject var fetcher = RadioFetcher()
-//    @StateObject var radioPlayer = RadioPlayer.instance
-//
-//    var body: some View {
-//        VStack {
-//            List(fetcher.radios) { radio in
-//                HStack (alignment: .center,
-//                        spacing: 10) {
-//                    KFImage(URL(string: radio.imageUrl))
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 50, height: 50)
-//                    Text(radio.name)
-//                }.onTapGesture {
-//                    do {
-//                        radioPlayer.initPlayer(url: radio.streamUrl)
-//                        radioPlayer.play(radio)
-//                    } catch {
-//                        print("AVAudioPlayer init failed")
-//                    }
-//                }
-//            }
-//            .frame(height: 500) // Set a fixed height for the list
-//        }
-//    }
-//}
 
 public class RadioFetcher: ObservableObject {
     

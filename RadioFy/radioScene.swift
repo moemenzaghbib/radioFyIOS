@@ -11,18 +11,17 @@ import SwiftUI
     
     struct radioScene: View {
         var body: some View {
-            NavigationView {
-                ZStack {
+                VStack {
                     // Fix the size and position of RadioListView
                     RadioListView()
-                        .frame(height: 200)
-                        .offset(x: 0, y: 0) // Adjust the offset as needed
+//                        .frame(height: 880)
+                        .offset(x: 0, y: 220) // Adjust the offset as needed
                     // Add InfoPanelView on top of it
                     InfoPanelView()
                         .zIndex(1)
-                        .padding()
+                        .padding(.bottom, 10) // Add bottom padding
                 }
-            }
+            
 
         }
     }

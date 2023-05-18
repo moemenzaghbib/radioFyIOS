@@ -130,14 +130,15 @@ struct POSTSPANEL: View {
     var body: some View {
         NavigationView {
             TabView(selection: $selection) {
-                PostCardList()
+                    PostCardList()
                     .tabItem {
                         Label("News", systemImage: "newspaper")
                     }
                     .tag(0)
                 
-                radioScene()
-                
+                    radioScene()
+                    .frame(maxHeight: .infinity) // Allow ChatView to expand vertically
+
                     .tabItem {
                         Label("Radio", systemImage: "dot.radiowaves.left.and.right")
                     }
