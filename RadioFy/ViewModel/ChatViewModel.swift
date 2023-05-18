@@ -94,6 +94,13 @@ class ChatViewModel: ObservableObject {
         self.roomName = roomName
         self.userName = userName
 
+//        self.webSocketManager.onNewMessageReceived = { [weak self] (userName, message) in
+//            let isCurrentUser = userName == self?.userName
+//            let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: isCurrentUser)
+//            DispatchQueue.main.async {
+//                self?.messages.append(chatMessage)
+//            }
+//        }
         self.webSocketManager.onNewMessageReceived = { [weak self] (userName, message) in
             let isCurrentUser = userName == self?.userName
             let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: isCurrentUser)

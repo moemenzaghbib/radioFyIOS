@@ -16,9 +16,9 @@ struct ChatView: View {
         VStack {
             List(viewModel.messages) { chatMessage in
                 VStack(alignment: chatMessage.isCurrentUser ? .trailing : .leading) {
-                    Text(chatMessage.userName)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    Text(chatMessage.userName) // Display the sender's user name
+                           .font(.caption)
+                           .foregroundColor(.secondary)
                     HStack {
                         if chatMessage.isCurrentUser {
                             Spacer()

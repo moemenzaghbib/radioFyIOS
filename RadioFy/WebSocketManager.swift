@@ -91,7 +91,7 @@ class WebSocketManager {
         }
         
         socket.on("updateChat") { [weak self] data, _ in
-            print("aaaaaaaaaaa")
+            print("chatData",data)
 
             if let chatData = data.first as? [String: Any],
                let userName = chatData["userName"] as? String,
