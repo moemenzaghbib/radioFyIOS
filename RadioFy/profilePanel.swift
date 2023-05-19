@@ -4,7 +4,8 @@ struct ProfilePanel: View {
 //    @EnvironmentObject var userData: UserData
     @State var username: String = ""
     @State var lastname: String = ""
-
+    @State private var goingEDIT = false
+    @State private var goingChangePassword = false
     @State private var loginResponse: String?
 
     var body: some View {
@@ -33,7 +34,7 @@ struct ProfilePanel: View {
 
                 VStack {
                     Button(action: {
-                        // Handle login button tap
+                        goingEDIT = true
                     }) {
                         Text("Edit Profile")
                             .fontWeight(.bold)
@@ -44,8 +45,12 @@ struct ProfilePanel: View {
                             .cornerRadius(8)
                         
                     }
+                    NavigationLink(destination: EditProfileView(), isActive: $goingEDIT) {
+                        EmptyView()
+                    }
+                    Spacer()
                     Button(action: {
-                        // Handle login button tap
+                        goingChangePassword = true
                     }) {
                         Text("Change password")
                             .fontWeight(.bold)
@@ -55,6 +60,9 @@ struct ProfilePanel: View {
                             .background(Color.white)
                             .cornerRadius(8)
                         
+                    }
+                    NavigationLink(destination: changePasswordView(), isActive: $goingChangePassword) {
+                        EmptyView()
                     }
                     Button(action: {
                         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
@@ -95,9 +103,15 @@ struct ProfilePanel: View {
                     if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         if let firstName = jsonResponse["firstname"] as? String {
                             username = firstName
+                            let defaults1 = UserDefaults.standard
+
+                            defaults1.set(username, forKey: "lastname")
                         }
                         if let lastName = jsonResponse["lastname"] as? String {
                             lastname = lastName
+                            let defaults1 = UserDefaults.standard
+
+                            defaults1.set(lastName, forKey: "lastname")
                         }
                         loginResponse = "Success"
                     } else {

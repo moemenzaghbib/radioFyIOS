@@ -105,15 +105,42 @@ import GoogleSignInSwift
                             URLSession.shared.dataTask(with: request) { data, response, error in
                                 if let httpResponse = response as? HTTPURLResponse {
                                     if httpResponse.statusCode == 200 {
+                                        loginResponse = String(data: data!, encoding: .utf8)
+//                                        print(loginResponse)
                                         // Success! The response is 200.
                                         if(isChecked){
                                             let defaults = UserDefaults.standard
                                             defaults.set(email, forKey: "emailLogin")
                                             defaults.set(password, forKey: "passwordLogin")
                                             print("hamma tahan")
+                                            if let jsonData = loginResponse!.data(using: .utf8) {
+                                                do {
+                                                    if let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                                                        // Use the parsed dictionary here
+                                                        print(jsonData)
+                                                        if let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                                                            if let firstname = jsonDict["firstname"] as? String, let lastname = jsonDict["lastname"] as? String {
+                                                                let defaults1 = UserDefaults.standard
+
+                                                                defaults1.set(jsonDict["lastname"] as? String, forKey: "lastname")
+                                                                defaults1.set(jsonDict["firstname"] as? String, forKey: "firstname")
+                                                                print("hamma tahan")
+                                                                print("First name: \(firstname)")
+                                                                print("Last name: \(lastname)")
+                                                                defaults1.synchronize()
+
+                                                            } else {
+                                                                print("First name or last name not found")
+                                                            }
+                                                        }
+                                                    }
+                                                } catch {
+                                                    print("Error parsing JSON: \(error.localizedDescription)")
+                                                }
+                                            }
                                         }
-                                        loginResponse = String(data: data!, encoding: .utf8)
-                                        print(loginResponse)
+                                      
+                                    
                                         
                                         transition = true
                                     } else if httpResponse.statusCode == 400 {
@@ -201,10 +228,15 @@ import GoogleSignInSwift
                         EmptyView()
                     }
                     .hidden()
-                    NavigationLink(destination:
-                                    POSTSPANEL(), isActive: $transition) {
-                        EmptyView()
+//                    NavigationLink(destination:
+//                                    POSTSPANEL(), isActive: $transition) {
+//                        EmptyView()
+//                    }
+                    NavigationLink(destination: POSTSPANEL()
+                        .navigationBarBackButtonHidden(true), isActive: $transition) {
+                            EmptyView()
                     }
+
                                     .navigationBarHidden(true)
                                     .navigationBarBackButtonHidden(true)
                     .hidden()

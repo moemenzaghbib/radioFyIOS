@@ -1,27 +1,28 @@
 //
-//  editProfilePanel.swift
+//  changePasswordView.swift
 //  RadioFy
 //
-//  Created by imen ben fredj on 6/4/2023.
+//  Created by imen ben fredj on 19/5/2023.
 //
+
 
 import Foundation
 import SwiftUI
 
-struct EditProfileView: View {
+struct changePasswordView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showAlert = false
-    @State private var email = UserDefaults.standard.string(forKey: "emailLogin") ?? ""
-    @State private var firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
-    @State private var lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
-//    @State private var password = ""
-//    @State private var repeatPassword = ""
-    
-    func editProfileBackTEST() {
-     
+
+    @State private var email = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
+    @State private var age = ""
+    @State private var password = ""
+    @State private var repeatPassword = ""
+    func editProfileBack() {
         print("The text was clicked!",firstName)
 
-        let url = URL(string: "http://localhost:9090/user/editProfileUser")!
+        let url = URL(string: "http://localhost:9090/user/restorpassword")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -31,9 +32,8 @@ struct EditProfileView: View {
     //    let password = userData["password"]
     //    let Age = userData["Age"]
         let userData: [String: Any] = [
-            "firstname": firstName,
-            "lastname": lastName,
             "email": email,
+            "password": password
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: userData)
         
@@ -47,11 +47,12 @@ struct EditProfileView: View {
             
             if response.statusCode == 200 {
                 print("User Profile Updated successfully")
-//                NavigationLink(destination: SignUpView2(firstName: firstName, lastName: lastName, age: age)) {
                 DispatchQueue.main.async {
                                    presentationMode.wrappedValue.dismiss()
                                }
                 showAlert = true
+
+//                NavigationLink(destination: SignUpView2(firstName: firstName, lastName: lastName, age: age)) {
 
             } else {
                 print("Error: \(response.statusCode)")
@@ -61,7 +62,6 @@ struct EditProfileView: View {
         task.resume()
     }
     var body: some View {
-        
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
@@ -73,37 +73,26 @@ struct EditProfileView: View {
                     .clipShape(Circle())
                     .padding(.top, 20)
                 
-                Text("Edit Profile")
+                Text("Change Password")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 
                 VStack(alignment: .leading) {
-                    TextField("Email", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal, 30)
-                        .padding(.top, 20)
-                    TextField("First Name", text: $firstName)
+                 
+                    SecureField("Password", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal, 30)
                         .padding(.top, 10)
-                    TextField("Last Name", text: $lastName)
+                    SecureField("Repeat Password", text: $repeatPassword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal, 30)
                         .padding(.top, 10)
-//                    SecureField("Password", text: $password)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .padding(.horizontal, 30)
-//                        .padding(.top, 10)
-//                    SecureField("Repeat Password", text: $repeatPassword)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .padding(.horizontal, 30)
-//                        .padding(.top, 10)
                 }
                 .padding(.bottom, 30)
                 
                 Button(action: {
-                    editProfileBackTEST()
+                    editProfileBack()
                     
                 }) {
                     Text("Save")
@@ -118,7 +107,7 @@ struct EditProfileView: View {
                 
                 Spacer()
             }
-        }.alert(isPresented: $showAlert) {
+        } .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Success"),
                 message: Text("User Profile Updated successfully"),
@@ -130,9 +119,8 @@ struct EditProfileView: View {
         }
     }
 }
-struct EditProfile_Previews: PreviewProvider {
+struct changePasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        
-        EditProfileView()
+        changePasswordView()
     }
 }

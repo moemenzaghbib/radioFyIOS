@@ -13,7 +13,7 @@ import Intents
 
 struct forget: View {
     
-   
+ 
 
     @State var login : String = ""
     @State var value : String = ""
@@ -147,7 +147,8 @@ struct forget: View {
     }
 
 struct ModalView: View {
-  
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showAlert = false
     
     
     @Binding var code: String
@@ -239,7 +240,10 @@ struct ModalView: View {
                                isButton1Visible = true
                                isButton2Visible = false
                     resetPassword(login: login, password: password)
-                    
+                    DispatchQueue.main.async {
+                                       presentationMode.wrappedValue.dismiss()
+                                   }
+                    showAlert = true
                            } .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(Color.orange)
@@ -247,6 +251,15 @@ struct ModalView: View {
                     .padding(.top,50)
                     .padding()
                        }
+        }.alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Success"),
+                message: Text("Password reseted successfully"),
+                dismissButton: .default(Text("OK")) {
+                    // Dismiss the current view and go back to the previous view
+                    presentationMode.wrappedValue.dismiss()
+                }
+            )
         }
     }
 }

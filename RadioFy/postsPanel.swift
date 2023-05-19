@@ -137,7 +137,6 @@ struct POSTSPANEL: View {
                     .tag(0)
                 
                     radioScene()
-                    .frame(maxHeight: .infinity) // Allow ChatView to expand vertically
 
                     .tabItem {
                         Label("Radio", systemImage: "dot.radiowaves.left.and.right")

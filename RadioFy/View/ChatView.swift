@@ -7,10 +7,12 @@ import Combine
 struct ChatView: View {
     @StateObject private var viewModel: ChatViewModel
     @State private var message: String = ""
-
-    init(webSocketManager: WebSocketManager, userName: String, roomName: String) {
-        _viewModel = StateObject(wrappedValue: ChatViewModel(webSocketManager: webSocketManager, roomName: roomName, userName: userName))
+    init(webSocketManager: WebSocketManager, userName: String, roomName: Binding<String>) {
+        _viewModel = StateObject(wrappedValue: ChatViewModel(webSocketManager: webSocketManager, roomName: roomName.wrappedValue, userName: userName))
     }
+//    init(webSocketManager: WebSocketManager, userName: String, roomName: String) {
+//        _viewModel = StateObject(wrappedValue: ChatViewModel(webSocketManager: webSocketManager, roomName: roomName, userName: userName))
+//    }
 
     var body: some View {
         VStack {
@@ -50,18 +52,14 @@ struct ChatView: View {
                     }
                 }
 
-                .onAppear {
-                    viewModel.subscribe(roomName: "room1", userName: "userName")
-                }
+               
 
             }
             .padding()
         }
-        .onAppear {
-            viewModel.subscribe(roomName: "roomName", userName: "userName")
-        }
+       
         .alert(item: $viewModel.userJoined) { userJoined in
-            Alert(title: Text("User Joined"), message: Text("\(userJoined.userName) has joined the room."), dismissButton: .default(Text("OK")))
+            Alert(title: Text("You Joined Radios chat HALL"), message: Text("Hello \(userJoined.userName) and welcome into the radios chat HALL."), dismissButton: .default(Text("OK")))
         }
     }
 }

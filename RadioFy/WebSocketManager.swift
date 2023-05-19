@@ -8,7 +8,10 @@ class WebSocketManager {
     var onNewMessageReceived: ((String, String) -> Void)?
     var onUserJoined: ((String) -> Void)?
     var onUserLeft: ((String) -> Void)?
-    
+//                let socketURL = URL(string: "http://127.0.0.1:3000")!
+
+    static let shared = WebSocketManager(socketURL: URL(string: "http://127.0.0.1:3000")!)
+
     init(socketURL: URL) {
         manager = SocketManager(socketURL: socketURL, config: [.log(false), .compress])
         socket = manager.defaultSocket
@@ -30,7 +33,20 @@ class WebSocketManager {
         socket.disconnect()
         connected = false
     }
-    
+    func joinRoom(roomName: String, userName: String) {
+        if connected {
+            let roomData: [String: Any] = ["roomName": roomName, "userName": userName]
+            socket.emit("subscribe", with: [roomData]) {
+                print("Subscribed to room: \(roomName)")
+            }
+        } else {
+            socket.once("connect") { [weak self] _, _ in
+                let roomData: [String: Any] = ["roomName": roomName, "userName": userName]
+                self?.socket.emit("subscribe", with: [roomData]) {
+                    print("Subscribed to room: \(roomName)")
+                }
+            }
+        }        }
     func subscribe(roomName: String, userName: String) {
         if connected {
             let roomData: [String: Any] = ["roomName": roomName, "userName": userName]

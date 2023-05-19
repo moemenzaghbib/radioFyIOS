@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		750805422A111B66005376BB /* WebSocketManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750805412A111B66005376BB /* WebSocketManagerWrapper.swift */; };
+		750805452A1761D9005376BB /* changePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750805442A1761D9005376BB /* changePasswordView.swift */; };
 		750A436D29BA82D800FE2A47 /* RadioFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436C29BA82D800FE2A47 /* RadioFyApp.swift */; };
 		750A436F29BA82D800FE2A47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436E29BA82D800FE2A47 /* ContentView.swift */; };
 		750A437129BA82D900FE2A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750A437029BA82D900FE2A47 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 /* Begin PBXFileReference section */
 		750805412A111B66005376BB /* WebSocketManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManagerWrapper.swift; sourceTree = "<group>"; };
 		750805432A16CCD2005376BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		750805442A1761D9005376BB /* changePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changePasswordView.swift; sourceTree = "<group>"; };
 		750A436929BA82D800FE2A47 /* RadioFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		750A436C29BA82D800FE2A47 /* RadioFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioFyApp.swift; sourceTree = "<group>"; };
 		750A436E29BA82D800FE2A47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				75771B3B29FAB01600C58DA7 /* radioPlayer.swift */,
 				75771B492A05385800C58DA7 /* radioScene.swift */,
 				75771BD72A085B3400C58DA7 /* PersistenceManager.swift */,
+				750805442A1761D9005376BB /* changePasswordView.swift */,
 			);
 			path = RadioFy;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				75771B2529DE4CFF00C58DA7 /* forget.swift in Sources */,
 				75771B442A05367900C58DA7 /* NowPlayingView.swift in Sources */,
 				750A43A629C30D3300FE2A47 /* signupPanel2.swift in Sources */,
+				750805452A1761D9005376BB /* changePasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

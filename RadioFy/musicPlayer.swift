@@ -115,7 +115,8 @@ struct MusicPlayerView: View {
                 })
                 .padding()
             }
-        }
+        }            .navigationBarTitle("Music Player")
+
         .sheet(isPresented: $isImporting) {
             DocumentPicker(supportedTypes: ["public.audio"], onUrlsPicked: { urls in
                 let newSongs = urls.map({ Song(name: $0.lastPathComponent, url: $0) })
@@ -128,7 +129,8 @@ struct MusicPlayerView: View {
             AVPlayer.setupObservers()
         }
     }
-}
+}           
+
 
 struct DocumentPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIDocumentPickerViewController

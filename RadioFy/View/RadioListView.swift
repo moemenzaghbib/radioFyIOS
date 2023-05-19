@@ -11,15 +11,16 @@ import Kingfisher
 import AVKit
 //
 struct RadioListView: View {
+    @State private var currentRoom: String = "WaitingHALL" // Add a @State property to hold the current room name
+
     @ObservedObject var fetcher = RadioFetcher()
     @StateObject var radioPlayer = RadioPlayer.instance
     let socketURL = URL(string: "http://127.0.0.1:3000")!
     let savedEmail = UserDefaults.standard.string(forKey: "emailLogin")
     var body: some View {
-        NavigationView {
             VStack(spacing: 0) { // Set spacing to 0
-                ChatView(webSocketManager: WebSocketManager(socketURL: socketURL), userName: savedEmail!, roomName: "WaitingHALL")
-                    .frame(maxHeight: .infinity) // Allow ChatView to expand vertically
+                ChatView(webSocketManager: WebSocketManager(socketURL: socketURL), userName: savedEmail!, roomName: $currentRoom)
+//                    .frame(maxHeight: .infinity) // Allow ChatView to expand vertically
                 RadioList(fetcher: fetcher)
             }
             .padding(.bottom, 10) // Add bottom padding
@@ -27,30 +28,28 @@ struct RadioListView: View {
             .navigationBarTitle("Radio List")
         }
 
-    }
+    
 }
 
-
 struct RadioList: View {
+    let savedEmail = UserDefaults.standard.string(forKey: "emailLogin")
+
     @ObservedObject var fetcher: RadioFetcher
     @StateObject var radioPlayer = RadioPlayer.instance
+    @State private var selectedRoom: String = "WaitingHALL" // Add a state variable to store the selected room
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: true) {
             HStack() {
                 ForEach(fetcher.radios) { radio in
                     VStack {
-//                        KFImage(URL(string: radio.imageUrl))
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(width: 50, height: 50)
-//                            .cornerRadius(8) // Add corner radius to make it a small block shape
                         Text(radio.name)
-                            .frame(maxWidth: .infinity) // Expand the text to fill the width
-                            .padding(.vertical, 8) // Add vertical padding for spacing
-                            .background(Color.gray.opacity(0.2)) // Add a background color
-                            .cornerRadius(8) // Add corner radius to the text view
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
                             .onTapGesture {
+                                selectedRoom = radio.name // Update the selected room
                                 do {
                                     radioPlayer.initPlayer(url: radio.streamUrl)
                                     radioPlayer.play(radio)
@@ -59,13 +58,52 @@ struct RadioList: View {
                                 }
                             }
                     }
-                    .frame(width: UIScreen.main.bounds.width) // Set the width of each item to the screen width
+                    .frame(width: UIScreen.main.bounds.width)
                 }
             }
-//            .padding()
+        }
+        .onChange(of: selectedRoom) { newValue in
+            // Rejoin the selected room in the ChatView
+            WebSocketManager.shared.joinRoom(roomName: selectedRoom, userName: savedEmail!)
         }
     }
 }
+
+//struct RadioList: View {
+//    @ObservedObject var fetcher: RadioFetcher
+//    @StateObject var radioPlayer = RadioPlayer.instance
+//
+//    var body: some View {
+//        ScrollView(.horizontal, showsIndicators: true) {
+//            HStack() {
+//                ForEach(fetcher.radios) { radio in
+//                    VStack {
+////                        KFImage(URL(string: radio.imageUrl))
+////                            .resizable()
+////                            .aspectRatio(contentMode: .fill)
+////                            .frame(width: 50, height: 50)
+////                            .cornerRadius(8) // Add corner radius to make it a small block shape
+//                        Text(radio.name)
+//                            .frame(maxWidth: .infinity) // Expand the text to fill the width
+//                            .padding(.vertical, 8) // Add vertical padding for spacing
+//                            .background(Color.gray.opacity(0.2)) // Add a background color
+//                            .cornerRadius(8) // Add corner radius to the text view
+//                            .onTapGesture {
+//                                do {
+//                                    radioPlayer.initPlayer(url: radio.streamUrl)
+//                                    radioPlayer.play(radio)
+//                                } catch {
+//                                    print("AVAudioPlayer init failed")
+//                                }
+//                            }
+//                    }
+//                    .frame(width: UIScreen.main.bounds.width) // Set the width of each item to the screen width
+//                }
+//            }
+////            .padding()
+//        }
+//    }
+//}
 
 
 

@@ -80,20 +80,27 @@ struct UserLeft: Identifiable {
     let id = UUID()
     let userName: String
 }
-
-class ChatViewModel: ObservableObject {
-    @Published var userLeft: UserLeft?
-    @Published var messages: [ChatMessage] = []
-    let webSocketManager: WebSocketManager
-    var roomName: String
-    var userName: String
-    @Published var userJoined: UserJoined?
-
-    init(webSocketManager: WebSocketManager, roomName: String, userName: String) {
-        self.webSocketManager = webSocketManager
-        self.roomName = roomName
-        self.userName = userName
-
+//
+//class ChatViewModel: ObservableObject {
+//    @Published var userLeft: UserLeft?
+//    @Published var messages: [ChatMessage] = []
+//    let webSocketManager: WebSocketManager
+//    var roomName: String
+//    var userName: String
+//    @Published var userJoined: UserJoined?
+//
+//    init(webSocketManager: WebSocketManager, roomName: String, userName: String) {
+//        self.webSocketManager = webSocketManager
+//        self.roomName = roomName
+//        self.userName = userName
+//
+////        self.webSocketManager.onNewMessageReceived = { [weak self] (userName, message) in
+////            let isCurrentUser = userName == self?.userName
+////            let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: isCurrentUser)
+////            DispatchQueue.main.async {
+////                self?.messages.append(chatMessage)
+////            }
+////        }
 //        self.webSocketManager.onNewMessageReceived = { [weak self] (userName, message) in
 //            let isCurrentUser = userName == self?.userName
 //            let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: isCurrentUser)
@@ -101,6 +108,55 @@ class ChatViewModel: ObservableObject {
 //                self?.messages.append(chatMessage)
 //            }
 //        }
+//
+//        self.webSocketManager.onUserJoined = { [weak self] userName in
+//            print("\(userName) joined the chat")
+//            DispatchQueue.main.async {
+//                self?.userJoined = UserJoined(userName: userName)
+//            }
+//        }
+//
+//        self.webSocketManager.onUserLeft = { [weak self] userName in
+//            print("\(userName) left the chat")
+//            DispatchQueue.main.async {
+//                self?.userLeft = UserLeft(userName: userName)
+//            }
+//        }
+//    }
+//
+//    func subscribe(roomName: String, userName: String) {
+//        webSocketManager.subscribe(roomName: roomName, userName: userName)
+//    }
+//
+//    func sendMessage(_ message: String) {
+//        webSocketManager.send(message, roomName: roomName, userName: userName)
+//        let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: true)
+//        messages.append(chatMessage)
+//    }
+//}
+class ChatViewModel: ObservableObject {
+    @Published var userLeft: UserLeft?
+    @Published var messages: [ChatMessage] = []
+    let webSocketManager: WebSocketManager
+    @Published var userJoined: UserJoined?
+
+    var roomName: String {
+        didSet {
+            subscribe(roomName: roomName, userName: userName)
+        }
+    }
+
+    var userName: String {
+        didSet {
+            subscribe(roomName: roomName, userName: userName)
+        }
+    }
+
+    init(webSocketManager: WebSocketManager, roomName: String, userName: String) {
+        self.webSocketManager = webSocketManager
+        self.roomName = roomName
+        self.userName = userName
+        
         self.webSocketManager.onNewMessageReceived = { [weak self] (userName, message) in
             let isCurrentUser = userName == self?.userName
             let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: isCurrentUser)
@@ -108,29 +164,36 @@ class ChatViewModel: ObservableObject {
                 self?.messages.append(chatMessage)
             }
         }
-
+        
         self.webSocketManager.onUserJoined = { [weak self] userName in
             print("\(userName) joined the chat")
             DispatchQueue.main.async {
                 self?.userJoined = UserJoined(userName: userName)
             }
         }
-
+        
         self.webSocketManager.onUserLeft = { [weak self] userName in
             print("\(userName) left the chat")
             DispatchQueue.main.async {
                 self?.userLeft = UserLeft(userName: userName)
             }
         }
+        
+        subscribe(roomName: roomName, userName: userName)
     }
-
+    
     func subscribe(roomName: String, userName: String) {
         webSocketManager.subscribe(roomName: roomName, userName: userName)
     }
-
+    
     func sendMessage(_ message: String) {
-        webSocketManager.send(message, roomName: roomName, userName: userName)
-        let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: true)
-        messages.append(chatMessage)
+          webSocketManager.send(message, roomName: roomName, userName: userName)
+          let chatMessage = ChatMessage(userName: userName, message: message, isCurrentUser: true)
+          messages.append(chatMessage)
+      }
+    
+    func joinRoom(roomName: String) {
+//        webSocketManager.unsubscribeAll() // Unsubscribe from current room
+        self.roomName = roomName // Update the roomName
     }
 }
