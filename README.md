@@ -54,8 +54,18 @@ RadioFY IOS is a tunsian's radios based app that gives you the access to listen 
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+steps: 
+-clone the project inside a new folder call it for example "RADIOFY IOS APP"
+-clone this project ( containing the back server of the app ) : https://github.com/moemenzaghbib/RadioFy_Server
+- open the server folder and run:
+    - npm i
+    - npm run dev 
+- open RADIOFY IOS APP then open webSOcket SERVER then run 
+        - npm i 
+        -npm run start
+- open the xcode project then run
 
+YOUR APP SHOULD FUNCTION CORRECTLY
 
 ## Features
 

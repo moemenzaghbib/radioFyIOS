@@ -4,6 +4,7 @@
 //
 //  Created by imen ben fredj on 19/5/2023.
 //
+import HCaptcha
 
 
 import Foundation
@@ -12,6 +13,7 @@ import SwiftUI
 struct changePasswordView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showAlert = false
+    @State private var hCaptchaToken: String = ""
 
     @State private var email = ""
     @State private var firstName = ""

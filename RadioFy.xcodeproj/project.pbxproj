@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		750805422A111B66005376BB /* WebSocketManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750805412A111B66005376BB /* WebSocketManagerWrapper.swift */; };
 		750805452A1761D9005376BB /* changePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750805442A1761D9005376BB /* changePasswordView.swift */; };
+		750805482A1787CE005376BB /* HCaptcha in Frameworks */ = {isa = PBXBuildFile; productRef = 750805472A1787CE005376BB /* HCaptcha */; };
+		7508054A2A1787CE005376BB /* HCaptcha_RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 750805492A1787CE005376BB /* HCaptcha_RxSwift */; };
 		750A436D29BA82D800FE2A47 /* RadioFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436C29BA82D800FE2A47 /* RadioFyApp.swift */; };
 		750A436F29BA82D800FE2A47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A436E29BA82D800FE2A47 /* ContentView.swift */; };
 		750A437129BA82D900FE2A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750A437029BA82D900FE2A47 /* Assets.xcassets */; };
@@ -119,7 +121,9 @@
 			files = (
 				75771B2D29EB562800C58DA7 /* Kingfisher in Frameworks */,
 				75771B2829E7674100C58DA7 /* SwiftSoup in Frameworks */,
+				7508054A2A1787CE005376BB /* HCaptcha_RxSwift in Frameworks */,
 				75771B3029EB841300C58DA7 /* GoogleSignIn in Frameworks */,
+				750805482A1787CE005376BB /* HCaptcha in Frameworks */,
 				75771BDD2A110C7900C58DA7 /* Starscream in Frameworks */,
 				75771B3229EB841300C58DA7 /* GoogleSignInSwift in Frameworks */,
 				75771BE42A11128500C58DA7 /* SocketIO in Frameworks */,
@@ -293,6 +297,8 @@
 				75771B3129EB841300C58DA7 /* GoogleSignInSwift */,
 				75771BDC2A110C7900C58DA7 /* Starscream */,
 				75771BE32A11128500C58DA7 /* SocketIO */,
+				750805472A1787CE005376BB /* HCaptcha */,
+				750805492A1787CE005376BB /* HCaptcha_RxSwift */,
 			);
 			productName = RadioFy;
 			productReference = 750A436929BA82D800FE2A47 /* RadioFy.app */;
@@ -372,6 +378,7 @@
 				75771B2E29EB841300C58DA7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				75771BDB2A110C7900C58DA7 /* XCRemoteSwiftPackageReference "Starscream" */,
 				75771BE22A11128500C58DA7 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				750805462A1787CE005376BB /* XCRemoteSwiftPackageReference "HCaptcha-ios-sdk" */,
 			);
 			productRefGroup = 750A436A29BA82D800FE2A47 /* Products */;
 			projectDirPath = "";
@@ -768,6 +775,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		750805462A1787CE005376BB /* XCRemoteSwiftPackageReference "HCaptcha-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hCaptcha/HCaptcha-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		75771B2629E7674100C58DA7 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
@@ -811,6 +826,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		750805472A1787CE005376BB /* HCaptcha */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 750805462A1787CE005376BB /* XCRemoteSwiftPackageReference "HCaptcha-ios-sdk" */;
+			productName = HCaptcha;
+		};
+		750805492A1787CE005376BB /* HCaptcha_RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 750805462A1787CE005376BB /* XCRemoteSwiftPackageReference "HCaptcha-ios-sdk" */;
+			productName = HCaptcha_RxSwift;
+		};
 		75771B2729E7674100C58DA7 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 75771B2629E7674100C58DA7 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
