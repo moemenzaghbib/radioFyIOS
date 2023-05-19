@@ -167,7 +167,7 @@ struct ModalView: View {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        print("hamma stal",password)
         let parameters: [String: Any] = [
             "email": login,
           "password": password

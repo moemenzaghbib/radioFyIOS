@@ -5,6 +5,7 @@ import SwiftUI
 import Combine
 
 struct ChatView: View {
+     var lowl = true
     @StateObject private var viewModel: ChatViewModel
     @State private var message: String = ""
     init(webSocketManager: WebSocketManager, userName: String, roomName: Binding<String>) {
@@ -57,9 +58,16 @@ struct ChatView: View {
             }
             .padding()
         }
-       
-        .alert(item: $viewModel.userJoined) { userJoined in
-            Alert(title: Text("You Joined Radios chat HALL"), message: Text("Hello \(userJoined.userName) and welcome into the radios chat HALL."), dismissButton: .default(Text("OK")))
-        }
+//        if lowl {
+//
+//            .alert(item: $viewModel.userJoined) { userJoined in
+//                return Alert(
+//                    title: Text("You Joined Radios chat HALL"),
+//                    message: Text("Hello \(userJoined.userName) and welcome to the radios chat HALL."),
+//                    dismissButton: .default(Text("OK"))
+//
+//                )
+//
+//            }
     }
 }

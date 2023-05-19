@@ -149,7 +149,7 @@ import GoogleSignInSwift
                                         showAlert = true
 
                                         self.alert(isPresented: .constant(true)) {
-                                            Alert(title: Text("Error"), message: Text(loginResponse!))
+                                            Alert(title: Text("Error"), message: Text("wrong email &/ password!"))
                                         }
                                     } else {
                                         showAlert = true
@@ -157,7 +157,7 @@ import GoogleSignInSwift
                                         // Some other status code was returned, handle it appropriately
                                         loginResponse = "Error: \(httpResponse.statusCode)"
                                         self.alert(isPresented: .constant(true)) {
-                                            Alert(title: Text("Error"), message: Text(loginResponse!))
+                                            Alert(title: Text("Error"), message: Text("unknown error, please retry later on !"))
                                         }
                                     }
                                 } else {
